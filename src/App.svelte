@@ -11,15 +11,9 @@
 <style>
 	main {
 		text-align: center;
-		max-width: 240px;
+		width: 100%;
 		padding-top:32px;
 
-		height: calc(100%-32px);
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+		height: calc(100% - 32px);
 	}
 </style>

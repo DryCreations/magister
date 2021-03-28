@@ -32,8 +32,10 @@ function createWindow() {
         loadURL(mainWindow);
     }
 
-    //process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true;
-    mainWindow.webContents.openDevTools();
+    if (isDev()) {
+        //process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true;
+        mainWindow.webContents.openDevTools();
+    }
 
     mainWindow.on('closed', function () {
         mainWindow = null
@@ -52,18 +54,18 @@ function createWindow() {
     app.on('activate', function () {
         if (mainWindow === null) createWindow()
     });
-    
-    ipcMain.on('close', (event, arg) => {
-        mainWindow.close();
-    })
-    
-    ipcMain.on('minimize', (event, arg) => {
-        mainWindow.minimize();
-    })
-    
-    ipcMain.on('maximize', (event, arg) => {
-        mainWindow.maximize();
-    })
 }
 
 app.on('ready', createWindow);
+
+ipcMain.on('close', (event, arg) => {
+    mainWindow.close();
+})
+
+ipcMain.on('minimize', (event, arg) => {
+    mainWindow.minimize();
+})
+
+ipcMain.on('maximize', (event, arg) => {
+    mainWindow.maximize();
+})
