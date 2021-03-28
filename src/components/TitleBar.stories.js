@@ -11,8 +11,14 @@ const Template = (args) => ({
   props: args,
 });
 
-export const FirstStory = Template.bind({});
+export const Maximized = Template.bind({});
 
-FirstStory.args = {
-  /* the args you need here will depend on your component */
+export const Unmaximized = Template.bind({});
+
+Maximized.args = {
+  isMax: true,
+};
+
+Unmaximized.args = {
+    isMax: false,
 };

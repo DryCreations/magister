@@ -54,6 +54,14 @@ function createWindow() {
     app.on('activate', function () {
         if (mainWindow === null) createWindow()
     });
+
+    mainWindow.on('maximize', function() {
+        mainWindow.webContents.send('maximize');
+    })
+
+    mainWindow.on('unmaximize', function() {
+        mainWindow.webContents.send('unmaximize');
+    })
 }
 
 app.on('ready', createWindow);
@@ -68,4 +76,8 @@ ipcMain.on('minimize', (event, arg) => {
 
 ipcMain.on('maximize', (event, arg) => {
     mainWindow.maximize();
+})
+
+ipcMain.on('unmaximize', (event, arg) => {
+    mainWindow.unmaximize();
 })
