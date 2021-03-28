@@ -16,8 +16,8 @@ jobs:
 
       - name: Cancel previous Build attempts
         uses: n1hility/cancel-previous-runs@v2
-          with: 
-            token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
