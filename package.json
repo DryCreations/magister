@@ -3,15 +3,15 @@
   "author": "DryCreations",
   "description": "A tool for managing github classrooms",
   "version": "1.0.1",
-  "main": "main.js",
+  "main": "src/main.js",
   "build": {
     "icon": "public/favicon.png",
     "productName": "magister",
     "appId": "magister",
     "files": [
       "public/**/*",
-      "main.js",
-      "preload.js"
+      "src/main.js",
+      "src/preload.js"
     ],
     "win": {},
     "linux": {},
