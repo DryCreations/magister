@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v1
+
+      - name: Cancel previous Build attempts
         uses: n1hility/cancel-previous-runs@v2
           with: 
             token: ${{ secrets.GITHUB_TOKEN }}
