@@ -2,7 +2,7 @@
   "name": "magister",
   "author": "DryCreations",
   "description": "A tool for managing github classrooms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "main.js",
   "build": {
     "icon": "public/favicon.png",
