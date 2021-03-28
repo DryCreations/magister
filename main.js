@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, session } = require('electron');
 const path = require('path');
 const serve = require('electron-serve');
 const loadURL = serve({ directory: 'public' });
@@ -44,26 +44,26 @@ function createWindow() {
     });
 
     mainWindow.removeMenu();
+
+    app.on('window-all-closed', function () {
+        if (process.platform !== 'darwin') app.quit()
+    });
+    
+    app.on('activate', function () {
+        if (mainWindow === null) createWindow()
+    });
+    
+    ipcMain.on('close', (event, arg) => {
+        mainWindow.close();
+    })
+    
+    ipcMain.on('minimize', (event, arg) => {
+        mainWindow.minimize();
+    })
+    
+    ipcMain.on('maximize', (event, arg) => {
+        mainWindow.maximize();
+    })
 }
 
 app.on('ready', createWindow);
-
-app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') app.quit()
-});
-
-app.on('activate', function () {
-    if (mainWindow === null) createWindow()
-});
-
-ipcMain.on('close', (event, arg) => {
-    mainWindow.close();
-})
-
-ipcMain.on('minimize', (event, arg) => {
-    mainWindow.minimize();
-})
-
-ipcMain.on('maximize', (event, arg) => {
-    mainWindow.maximize();
-})
