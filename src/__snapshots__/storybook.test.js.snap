@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots HelloWorld First Story 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <main>
+    <h1>
+      Hello World!
+    </h1>
+  </main>
+</section>
+`;
