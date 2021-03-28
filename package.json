@@ -1,7 +1,7 @@
 {
   "name": "magister",
   "author": "DryCreations",
-  "description": "",
+  "description": "A tool for managing github classrooms",
   "version": "1.0.0",
   "main": "main.js",
   "build": {
