@@ -10,7 +10,52 @@ exports[`Storyshots HelloWorld First Story 1`] = `
 </section>
 `;
 
-exports[`Storyshots Title Bar First Story 1`] = `
+exports[`Storyshots Title Bar Maximized 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <header>
+    <div
+      id="drag-region"
+    >
+      <div
+        id="window-title"
+      >
+        <span>
+          Magister
+        </span>
+      </div>
+       
+      <div
+        id="window-controls"
+      >
+        <div
+          class="button"
+          id="min-button"
+        >
+          min
+        </div>
+         
+        <div
+          class="button"
+          id="unmax-button"
+        >
+          unmax
+        </div>
+         
+        <div
+          class="button"
+          id="close-button"
+        >
+          close
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+`;
+
+exports[`Storyshots Title Bar Unmaximized 1`] = `
 <section
   class="storybook-snapshot-container"
 >
