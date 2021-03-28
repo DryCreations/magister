@@ -1,14 +1,14 @@
 <script>
     function onClose() {
-        window.browser.close();
+        window.api.send("close");
     }
 
     function onMinimize() {
-        window.browser.minimize();
+        window.api.send("minimize");
     }
 
     function onMaximize() {
-        window.browser.maximize();
+        window.api.send("maximize");
     }
 </script>
 

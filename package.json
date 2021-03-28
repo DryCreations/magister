@@ -2,7 +2,7 @@
   "name": "magister",
   "author": "DryCreations",
   "description": "",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "main.js",
   "build": {
     "icon": "public/favicon.png",
