@@ -1,14 +1,8 @@
-<main>
-	<h1>Hello World!</h1>
-</main>
+<h1>Hello World!</h1>
+
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+	
 
 	h1 {
 		color: #ff3e00;
@@ -17,9 +11,4 @@
 		font-weight: 100;
 	}
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>

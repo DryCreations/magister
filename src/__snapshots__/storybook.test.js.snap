@@ -4,10 +4,53 @@ exports[`Storyshots HelloWorld First Story 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <main>
-    <h1>
-      Hello World!
-    </h1>
-  </main>
+  <h1>
+    Hello World!
+  </h1>
+</section>
+`;
+
+exports[`Storyshots Title Bar First Story 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <header>
+    <div
+      id="drag-region"
+    >
+      <div
+        id="window-title"
+      >
+        <span>
+          Magister
+        </span>
+      </div>
+       
+      <div
+        id="window-controls"
+      >
+        <div
+          class="button"
+          id="min-button"
+        >
+          min
+        </div>
+         
+        <div
+          class="button"
+          id="max-button"
+        >
+          max
+        </div>
+         
+        <div
+          class="button"
+          id="close-button"
+        >
+          close
+        </div>
+      </div>
+    </div>
+  </header>
 </section>
 `;
