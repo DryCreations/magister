@@ -10,6 +10,21 @@
     function onMaximize() {
         window.api.send("maximize");
     }
+    
+    function onUnmaximize() {
+        window.api.send("unmaximize");
+    }
+
+    window.api.receive("maximize", (data) => {
+        isMax = true;
+    });
+
+    window.api.receive("unmaximize", (data) => {
+        isMax = false;
+    });
+
+    export let isMax = false;
+
 </script>
 
 <header>
@@ -22,13 +37,22 @@
             <div class="button" id="min-button" on:click={onMinimize}>
               min
             </div>
-      
+            
+            {#if !isMax}
             <div class="button" id="max-button" on:click={onMaximize}>
-                max
+              max
             </div>
+            {:else}
+            <div class="button" id="unmax-button" on:click={onUnmaximize}>
+              unmax
+            </div>
+            {/if}
+            
+
+            
       
             <div class="button" id="close-button" on:click={onClose}>
-                close
+              close
             </div>
       
           </div>
@@ -56,7 +80,7 @@ display: block;
 
 #window-controls {
   display: grid;
-  grid-template-columns: repeat(3, 46px);
+  grid-template-columns: repeat(3, 50px);
   position: absolute;
   top: 0;
   right: 0;
@@ -75,6 +99,9 @@ display: block;
   grid-column: 1;
 }
 #max-button {
+  grid-column: 2;
+}
+#unmax-button {
   grid-column: 2;
 }
 #close-button {
