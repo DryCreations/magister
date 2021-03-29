@@ -32,6 +32,8 @@ jobs:
 
       - name: Build application
         run: npm run preelectron-pack
-
+        
       - name: Package application
         run: npm run electron-pack
+        with:
+          github_token: ${{ secrets.github_token }}
