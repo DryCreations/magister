@@ -26,9 +26,9 @@
     "preelectron-pack": "yarn run build",
     "electron-pack": "electron-builder",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o docs-build",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch"    
   },
   "devDependencies": {
     "@babel/core": "^7.13.13",
