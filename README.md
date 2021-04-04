@@ -1,6 +1,6 @@
 # Magister
  
-Nagister is a tool for better managing github classrooms.
+Magister is a tool for better managing github classrooms.
 
 This project is currently a work in progress, and primarily for personal use.
 
