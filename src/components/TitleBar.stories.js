@@ -2,7 +2,7 @@ import TitleBar from './TitleBar.svelte';
 
 // This default export determines where your story goes in the story list
 export default {
-  title: 'Title Bar',
+  title: 'Components/Title Bar',
   component: TitleBar,
 };
 
