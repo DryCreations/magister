@@ -2,7 +2,7 @@ import HelloWorld from './HelloWorld.svelte';
 
 // This default export determines where your story goes in the story list
 export default {
-  title: 'HelloWorld',
+  title: 'Components/HelloWorld',
   component: HelloWorld,
 };
 
