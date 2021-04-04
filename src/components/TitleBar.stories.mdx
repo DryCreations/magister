@@ -6,6 +6,9 @@ import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 
 # TitleBar
 
+The `TitleBar` component allows the user to interact with electrons api by closing, minimizing, or maximizing the window.
+The component will change depending on whether or not the window is maximized, giving the user the option to maximize or unmaximize depending on the situation.
+
 export const Template = (args) => ({
   Component: TitleBar,
   props: args,
@@ -29,6 +32,10 @@ export const Template = (args) => ({
   </Story>
 </Canvas>
 
+## Maximized
+
+When the `TitleBar` is given the prop `isMax` set to `true` then we see the component change to allow the unmaximize option.
+
 <Canvas>
   <Story 
     name="Maximized"
@@ -47,13 +54,17 @@ export const Template = (args) => ({
   </Story>
 </Canvas>
 
+## Unmaximize
+
+When the `TitleBar` is given the prop `isMax` set to `false` then we see the component change to allow the maximize option.
+
 <Canvas>
   <Story 
     name="Unmaximized"
     parameters={{
       docs: {
         source: {
-          code: '<TitleBar isMax={true}/>'
+          code: '<TitleBar isMax={false}/>'
         }
       }
     }}
@@ -64,6 +75,10 @@ export const Template = (args) => ({
     {Template.bind({})}
   </Story>
 </Canvas>
+
+## Playground
+
+Below is an interactive `TitleBar` that you can freely change the value of `isMax`.
 
 <Canvas>
   <Story 
