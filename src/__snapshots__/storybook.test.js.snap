@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots HelloWorld First Story 1`] = `
-<section
-  class="storybook-snapshot-container"
->
-  <h1>
-    Hello World!
-  </h1>
-</section>
-`;
-
 exports[`Storyshots Title Bar Maximized 1`] = `
 <section
   class="storybook-snapshot-container"

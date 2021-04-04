@@ -10,7 +10,7 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!(@storybook/.*\\.svelte$))',
   ],
-  moduleFileExtensions: ["js", "svelte", "json"],
+  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node', 'svelte'],
   testPathIgnorePatterns: ["node_modules"],
   bail: false,
   verbose: true,
