@@ -1,0 +1,86 @@
+import TitleBar from './TitleBar.svelte';
+
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
+
+<Meta title="MDX/Title Bar" component={TitleBar} />
+
+# TitleBar
+
+export const Template = (args) => ({
+  Component: TitleBar,
+  props: args,
+});
+
+<Canvas>
+  <Story 
+    name="Default"
+    parameters={{
+      docs: {
+        source: {
+          code: '<TitleBar/>'
+        }
+      }
+    }}
+    args={{
+      isMax: true
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story 
+    name="Maximized"
+    parameters={{
+      docs: {
+        source: {
+          code: '<TitleBar isMax={true}/>'
+        }
+      }
+    }}
+    args={{
+      isMax: true
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story 
+    name="Unmaximized"
+    parameters={{
+      docs: {
+        source: {
+          code: '<TitleBar isMax={true}/>'
+        }
+      }
+    }}
+    args={{
+      isMax: false
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story 
+    name="Playground"
+    parameters={{
+      docs: {
+        source: {
+          code: '<TitleBar/>'
+        }
+      }
+    }}
+    args={{
+      isMax: false
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Playground"/>
