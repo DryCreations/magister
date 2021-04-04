@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots HelloWorld First Story 1`] = `
+exports[`Storyshots Components/HelloWorld First Story 1`] = `
 <section
   class="storybook-snapshot-container"
 >
@@ -10,7 +10,7 @@ exports[`Storyshots HelloWorld First Story 1`] = `
 </section>
 `;
 
-exports[`Storyshots Title Bar Maximized 1`] = `
+exports[`Storyshots Components/Title Bar Maximized 1`] = `
 <section
   class="storybook-snapshot-container"
 >
@@ -55,7 +55,7 @@ exports[`Storyshots Title Bar Maximized 1`] = `
 </section>
 `;
 
-exports[`Storyshots Title Bar Unmaximized 1`] = `
+exports[`Storyshots Components/Title Bar Unmaximized 1`] = `
 <section
   class="storybook-snapshot-container"
 >
