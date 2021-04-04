@@ -1,3 +1,3 @@
-test('Should pass, just esting Jest', () => {
+test('Should pass, just testing Jest', () => {
   expect(true).toBe(true);
 });
