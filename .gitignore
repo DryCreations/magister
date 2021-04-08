@@ -5,3 +5,5 @@ build-storybook.log
 /docs-build/
 /data/
 .DS_Store
+
+src/modules/config.js
