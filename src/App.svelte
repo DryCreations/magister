@@ -12,7 +12,6 @@
 	main {
 		text-align: center;
 		width: 100%;
-		padding-top:32px;
 
 		height: calc(100% - 32px);
 	}

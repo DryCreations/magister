@@ -4,13 +4,13 @@ const { contextBridge, ipcRenderer } = require('electron')
 contextBridge.exposeInMainWorld(
     "api", {
         send: (channel, data) => {
-            let validChannels = ["close", "minimize", "maximize", "unmaximize"];
+            let validChannels = ["close", "minimize", "maximize", "unmaximize", "github-oauth"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);
             }
         },
         receive: (channel, func) => {
-            let validChannels = ["maximize", "unmaximize"];
+            let validChannels = ["maximize", "unmaximize", "github-oauth"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));
             }

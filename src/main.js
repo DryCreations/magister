@@ -3,6 +3,10 @@ const path = require('path');
 const serve = require('electron-serve');
 const loadURL = serve({ directory: 'public' });
 
+
+
+const authFlow = require('./services/auth').authFlow;
+
 let mainWindow;
 
 function isDev() {
@@ -80,4 +84,11 @@ ipcMain.on('maximize', (event, arg) => {
 
 ipcMain.on('unmaximize', (event, arg) => {
     mainWindow.unmaximize();
+})
+
+ipcMain.on('github-oauth', (event, arg) => {
+    authFlow().then((response) => {
+        event.sender.send('github-oauth', response.data);
+        console.log(response);
+    })
 })
