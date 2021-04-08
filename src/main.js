@@ -3,8 +3,10 @@ const path = require('path');
 const serve = require('electron-serve');
 const loadURL = serve({ directory: 'public' });
 
-var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'data/data.db', autoload: true });
+const Datastore = require('nedb');
+const db = new Datastore({ filename: 'data/data.db', autoload: true });
+
+
 
 const authFlow = require('./modules/auth').authFlow;
 
@@ -53,6 +55,7 @@ function createWindow() {
     mainWindow.removeMenu();
 
     app.on('window-all-closed', function () {
+        db.persistence.compactDatafile()
         if (process.platform !== 'darwin') app.quit()
     });
     
@@ -91,5 +94,7 @@ ipcMain.on('github-oauth', (event, arg) => {
     authFlow().then((response) => {
         event.sender.send('github-oauth', response.data);
         console.log(response);
+
+        db.update({ name: "auth" }, {...response, name: "auth"}, {upsert: true})
     })
 })
