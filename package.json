@@ -11,7 +11,8 @@
     "files": [
       "public/**/*",
       "src/main.js",
-      "src/preload.js"
+      "src/preload.js",
+      "src/modules/*"
     ],
     "win": {},
     "linux": {},
@@ -68,6 +69,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "electron-serve": "^1.1.0",
+    "nedb": "^1.8.0",
     "normalize.css": "^8.0.1"
   },
   "browser": {

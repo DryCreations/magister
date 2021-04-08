@@ -3,9 +3,10 @@ const path = require('path');
 const serve = require('electron-serve');
 const loadURL = serve({ directory: 'public' });
 
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'data/data.db', autoload: true });
 
-
-const authFlow = require('./services/auth').authFlow;
+const authFlow = require('./modules/auth').authFlow;
 
 let mainWindow;
 

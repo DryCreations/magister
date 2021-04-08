@@ -3,5 +3,5 @@
 build-storybook.log
 /dist/
 /docs-build/
-
+/data/
 .DS_Store
