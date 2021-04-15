@@ -1,11 +1,10 @@
 
 const { BrowserWindow, session } = require('electron');
 
-const options = require('./config').oauth;
 const axios = require('axios');
 
 module.exports = {
-    authFlow: () => {
+    authFlow: (options) => {
         return new Promise(function(resolve, reject) {
             let authSession = session.fromPartition('auth_session');
     

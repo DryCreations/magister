@@ -2,13 +2,13 @@ const { app, BrowserWindow, dialog, ipcMain, session } = require('electron');
 const path = require('path');
 const serve = require('electron-serve');
 const loadURL = serve({ directory: 'public' });
-
+const axios = require('axios');
 const Datastore = require('nedb');
 const db = new Datastore({ filename: 'data/data.db', autoload: true });
 
-
-
 const authFlow = require('./modules/auth').authFlow;
+
+let githubql;
 
 let mainWindow;
 
@@ -90,11 +90,116 @@ ipcMain.on('unmaximize', (event, arg) => {
     mainWindow.unmaximize();
 })
 
-ipcMain.on('github-oauth', (event, arg) => {
-    authFlow().then((response) => {
-        event.sender.send('github-oauth', response.data);
-        console.log(response);
+const GET_USER = `
+{
+    viewer {
+        login
+    }
+}
+`;
 
-        db.update({ name: "auth" }, {...response, name: "auth"}, {upsert: true})
+// set app info
+ipcMain.on('set-oauth-app', (event, arg) => {
+    db.update({ type: 'oauth-app' }, {$set : { selected: false }}, {upsert: false}, () => {
+        db.update({ client_id: arg, type: 'oauth-app' }, {$set : { selected: true }}, {upsert: false}, () => {
+            db.find({ type: 'oauth-app' }, (err, docs) => {
+                event.sender.send('update-app-info', docs);
+            })
+        })
+    })
+})
+
+// set auth info
+ipcMain.on('set-oauth-token', (event, arg) => {
+    db.update({ type: 'oauth-token' }, {$set : { selected: false }}, {upsert: false}, () => {
+        db.update({ login: arg, type: 'oauth-token' }, {$set : { selected: true }}, {upsert: false}, () => {
+            db.find({ type: 'oauth-token' }, (err, docs) => {
+                event.sender.send('update-token-info', docs);
+            })
+        })
+    })
+})
+
+// add new app info flow
+ipcMain.on('add-oauth-app', (event, arg) => {
+    db.update({ client_id: arg.client_id, type: 'oauth-app' }, {...arg, type: 'oauth-app', selected: false}, {upsert: true}, () => {
+        db.find({ type: 'oauth-app' }, (err, docs) => {
+            event.sender.send('update-app-info', docs);
+        })
+    });
+})
+
+// add new auth info flow
+ipcMain.on('add-oauth-token', (event, arg) => {
+    db.find({ selected: true, type: 'oauth-app' }, (err, docs) => {
+        authFlow(docs[0]).then((response) => {
+            githubql = axios.create({
+                baseURL: 'https://api.github.com/graphql',
+                headers: {
+                    Authorization: `${response.token_type} ${response.access_token}`,
+                },
+            });
+    
+            githubql
+            .post('', { query: GET_USER })
+            .then(({data: { data }}) => {
+                console.log(data);
+                db.update({ login: data.viewer.login, type: 'oauth-token' }, {...response, login: data.viewer.login, type: 'oauth-token', selected: false}, {upsert: true}, () => {
+                    db.find({ type: 'oauth-token' }, (err, docs) => {
+                        event.sender.send('update-token-info', docs);
+                    })
+                });
+            });
+        })
+    })
+})
+
+// get app info
+ipcMain.on('get-app-info', (event, arg) => {
+    db.find({ type: 'oauth-app' }, (err, docs) => {
+        event.sender.send('update-app-info', docs);
+    }) 
+})
+
+// get auth info
+ipcMain.on('get-token-info', (event, arg) => {
+    db.find({ type: 'oauth-token' }, (err, docs) => {
+        event.sender.send('update-token-info', docs);
+    }) 
+})
+
+const TEST_QUERY = `
+{
+    viewer {
+      login
+      name
+      repositories(first: 100) {
+        nodes {
+          nameWithOwner
+          url
+        }
+      }
+    }
+  }
+`;
+
+// make query
+ipcMain.on('graph-query', (event, arg) => {
+    db.find({ selected: true, type: 'oauth-token' }, (err, docs) => {
+        let oauth_token = docs[0].access_token;
+        let token_type = docs[0].token_type;
+
+        githubql = axios.create({
+            baseURL: 'https://api.github.com/graphql',
+            headers: {
+                Authorization: `${token_type} ${oauth_token}`,
+            },
+        });
+
+        githubql
+        .post('', { query: TEST_QUERY })
+        .then(({data: { data }}) => {
+            console.log(data);
+        });
     })
 })
